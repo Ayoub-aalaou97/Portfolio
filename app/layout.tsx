@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
+import SiteHeader from "@/components/layout/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -9,6 +10,17 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const interSans = Inter({
+  variable: "--font-inter-sans",
+  subsets: ["latin"]
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  weight: ['400'],
   subsets: ["latin"],
 });
 
@@ -25,8 +37,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${interSans.variable} ${spaceMono.variable} antialiased`}
       >
+        <SiteHeader/>
         {children}
       </body>
     </html>
