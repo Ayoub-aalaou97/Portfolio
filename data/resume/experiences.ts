@@ -6,6 +6,7 @@ export const experiences = [
     actual: false,
     companyName: 'ePhilos AG',
     role: 'Trainer',
+    country: 'Bremen, Deutschland',
     tasks: [
       'Installation and administration of database management systems (MySQL)',
       'Frontend development with ExtJS, Webix.js, HTML, and CSS',
@@ -25,6 +26,7 @@ export const experiences = [
     actual: false,
     companyName: 'H&B Web',
     role: 'Trainer',
+    country: 'Marrakesch, Marokko',
     tasks: [
       'Developing PHP applications using object-oriented programming based on client requirements',
       'Creating and maintaining websites with WordPress CMS',

@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 
-import siteLogo from "../../public/logo.png";
+import siteLogo from "../../public/img/logo.png";
 
 const SiteHeader = () => {
   return (

@@ -7,11 +7,11 @@ type educationData = {
   endDate: string,
   actual: boolean,
   schoolName: string,
-  role: string,
-  tasks: Array<string>
+  country: string,
+  description: string
 };
 
-const ResumeEducation = ({schoolImage, startDate, endDate, actual: boolean = false, schoolName}: educationData) => {
+const ResumeEducation = ({schoolImage, startDate, endDate, actual: boolean = false, schoolName, country, description}: educationData) => {
   return (
     <div>
       <div className="edu-item flex relative mb-12">
@@ -25,13 +25,20 @@ const ResumeEducation = ({schoolImage, startDate, endDate, actual: boolean = fal
           />
         </div>
 
-        <div className="education-content ml-8">
-          <h3 className='text-space-mono'>{startDate} - {endDate}</h3>
-          <h1>{schoolName}</h1>
+        <div className="education-content ml-8 w-[100%]">
+          <div className='flex justify-between'>
+            <h1>{schoolName}</h1>
+            <div className='flex flex-col'>
+              <h3 className='text-space-mono'>{startDate} - {endDate}</h3>  
+              <h3 className='self-end'>{country}</h3>
+            </div>
+          </div>
+          
           <ul className="list-disc list-inside">
             {/* {tasks.map((task, index) => (
               <li key={index}>{task}</li>
             ))} */}
+            <li className='mt-1'>{description}</li>
           </ul>
         </div>
 

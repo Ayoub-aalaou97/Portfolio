@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SiteHeader from "@/components/layout/header";
-import myImg from "@/public/myimg_out.png";
+import myImg from "@/public/img/myimg_out.png";
 import BlogCard from "@/components/blog/blogCard";
 import { Icon } from "@iconify/react";
 
@@ -40,7 +40,7 @@ export default function Home() {
           <div className="blog-container grid grid-flow-col grid-cols-2 gap-4">
             
             <BlogCard 
-              imageUrl="/blog_1.jpg"
+              imageUrl="/img/blog/blog_1.jpg"
               title="Mastering React: Key Concepts and Essential Tips "
               description="Dive into React's core concepts in 2025! Learn about components, JSX, hooks, and more. Perfect for beginners looking to build modern web apps. Start your React journey today!"
               date="10.07.2025"
@@ -49,7 +49,7 @@ export default function Home() {
             />
   
             <BlogCard 
-            imageUrl="/blog_1.jpg"
+            imageUrl="/img/blog/blog_1.jpg"
             title="Mastering React: Key Concepts and Essential Tips "
             description="Dive into React's core concepts in 2025! Learn about components, JSX, hooks, and more. Perfect for beginners looking to build modern web apps. Start your React journey today!"
             date="10.07.2025"

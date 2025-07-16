@@ -1,9 +1,11 @@
 import React from 'react'
 import {Icon} from '@iconify/react';
 import Image from "next/image";
-import myImg from "@/public/myimg_out.png";
+import myImg from "@/public/img/myimg_out.png";
 import ResumeExperience from "@/components/resume/experience"
-import { experiences } from "@/data/resume/experience"
+import { experiences } from "@/data/resume/experiences"
+import ResumeEducation from "@/components/resume/education"
+import { educations } from "@/data/resume/educations"
 
 const Resume = () => {
   return (
@@ -47,10 +49,25 @@ const Resume = () => {
         {experiences.map((exp, index) => (
                 <ResumeExperience key={index} {...exp} />
         ))}
-
-        
       </section>
       
+      {/* Start Education */}
+      <section className='education-container'>
+        <h1 className='my-4'>Education</h1>
+        {educations.map((edu, index) => (
+            <ResumeEducation key={index} {...edu} />
+        ))}
+      </section>
+
+      <section className="skills-container">
+        <h1 className='my-4'>Skills</h1>
+        <div className="filter-skills flex">
+          <a href="#">All</a>
+          <a href="#">Frontend</a>
+          <a href="#">Backend</a>
+        </div>
+        <div className="skill"></div>
+      </section>
 
     </div>
   )
