@@ -15,9 +15,7 @@ const SiteHeader = () => {
             <Image 
               src={siteLogo}
               alt="Site logo"
-              width={52}
-              height={52}
-              style={{ display: 'inline-block' }}
+              style={{ display: 'inline-block', height: '52px', width: '52px' }}
             />
             <span className="grad-text">Ayoub Aalaou</span>
           </div>

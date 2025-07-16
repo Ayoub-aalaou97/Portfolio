@@ -6,6 +6,8 @@ import ResumeExperience from "@/components/resume/experience"
 import { experiences } from "@/data/resume/experiences"
 import ResumeEducation from "@/components/resume/education"
 import { educations } from "@/data/resume/educations"
+import ResumeSkills from  "@/components/resume/skill"
+import ResumeHobby from  "@/components/resume/hobby"
 
 const Resume = () => {
   return (
@@ -61,12 +63,12 @@ const Resume = () => {
 
       <section className="skills-container">
         <h1 className='my-4'>Skills</h1>
-        <div className="filter-skills flex">
-          <a href="#">All</a>
-          <a href="#">Frontend</a>
-          <a href="#">Backend</a>
-        </div>
-        <div className="skill"></div>
+        <ResumeSkills/>
+      </section>
+
+      <section>
+        <h1 className='my-4'>Hobby</h1>
+        <ResumeHobby />
       </section>
 
     </div>
