@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-
+import Link from 'next/link';
 
 import siteLogo from "../../public/img/logo.png";
 
@@ -23,19 +23,20 @@ const SiteHeader = () => {
           <nav>
             <ul className='flex items-center h-14'>
               <li className='mr-7'>
-                <a className='' href="#">Home</a>
+                <Link href="/">Home</Link>
+              </li>
+              {/* <li className='mr-7'>
+                <Link href="/">About me</Link>
+              </li> */}
+              <li className='mr-7'>
+                <Link href="/resume">Resume</Link>
               </li>
               <li className='mr-7'>
-                <a href="#">About me</a>
+              {/* //  <a href="#">Blog</a> */}
+                <Link href="/blog">blog</Link>
               </li>
               <li className='mr-7'>
-                <a href="#">Resume</a>
-              </li>
-              <li className='mr-7'>
-                <a href="#">Blog</a>
-              </li>
-              <li className='mr-7'>
-                <a href="#">Project</a>
+                <Link href="/">Project</Link>
               </li>
             </ul>
           </nav>

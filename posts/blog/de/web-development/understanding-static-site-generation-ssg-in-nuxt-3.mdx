@@ -1,0 +1,33 @@
+---
+title: "Understanding Static Site Generation (SSG) in Nuxt 3"
+slug: "understanding-static-site-generation-ssg-in-nuxt-3"
+date: "2025-08-04"
+author: "Michael Hoffmann"
+username: "@mokkapps"
+readTime: "4 min read"
+description: "A beginner-friendly guide to using Static Site Generation (SSG) in Nuxt 3 for fast, scalable, and SEO-friendly web applications."
+tags: ["Development", "Frontend", "Nuxt.js"]
+coverImage: "blog_2.jpg"
+category: "Web Development"
+---
+
+# Understanding Static Site Generation (SSG) in Nuxt 3
+
+Static Site Generation (SSG) is one of the core rendering strategies available in Nuxt 3. It allows your application to generate HTML at build time, which is then served as static files to users—resulting in fast load times and improved scalability.
+
+---
+
+## How SSG Works in Nuxt 3
+
+When using SSG, Nuxt pre-renders your pages during the build phase. The result is a collection of HTML files that are directly served by a CDN or static host.
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  ssr: false,
+  nitro: {
+    prerender: {
+      routes: ['/about', '/contact']
+    }
+  }
+})
