@@ -59,6 +59,22 @@ h6 { font-size: 2px; }
 /*end utils*/
 
 /*start test*/
+/* globals.css */
+pre code .highlighted {
+  @apply bg-yellow-200/30 dark:bg-yellow-400/10;
+}
+
+pre code .diff.add {
+  @apply bg-green-200/30 dark:bg-green-400/10;
+}
+
+pre code .diff.remove {
+  @apply bg-red-200/30 dark:bg-red-400/10;
+}
+
+pre code .focus {
+  @apply ring-2 ring-indigo-400/50 rounded-md;
+}
 
 
 /*end test*/

@@ -1,7 +1,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { cwd } from "process";
+import { compileMDX } from "next-mdx-remote/rsc";
+import { rehypeShikiConfig } from "@/lib/shiki-utils"; 
+import rehypeSlug from 'rehype-slug';
 
 /**
  * Get all blog posts for a given language and optional category.
@@ -52,18 +54,78 @@ export async function getAllBlogPosts(lang: string, category?: string) {
 }
 
 
-export async function getBlogPost({
-    lang,
-    category,
-    slang
-  }: {
-    lang:string,
-    category: string,
-    slang: string
-  }) {
+// export async function getBlogPost({
+//     lang,
+//     category,
+//     slang
+//   }: {
+//     lang:string,
+//     category: string,
+//     slang: string
+//   }) {
   
+//   try {
+//     const filePath = path.join(process.cwd(), "posts", "blog", lang, category, `${slang}.mdx`);
+
+//     if (!fs.existsSync(filePath)) {
+//       console.warn(`File not found: ${filePath}`);
+//       return null;
+//     }
+
+//     const fileContents = fs.readFileSync(filePath, "utf8");
+
+//     const { content, data: metadata } = matter(fileContents);
+
+//     const { content: compiledContent } = await compileMDX({
+//       source: content,
+//       options: {
+//         mdxOptions: {
+//           rehypePlugins: [
+//             [
+//               rehypeShiki,
+//               {
+//                 themes: {
+//                   light: "vitesse-light",
+//                   dark: "vitesse-dark",
+//                 },
+//               },
+//             ],
+//           ],
+//         },
+//       },
+//     });
+
+//     return {
+//       content,
+//       metadata,
+//       slug: slang,
+//     };
+//   } catch (error) {
+//     console.error("Error reading post:", error);
+//     return null;
+//   }
+  
+// }
+
+
+
+
+type BlogPostParams = {
+  lang: string;
+  category: string;
+  slang: string;
+};
+
+export async function getBlogPost({ lang, category, slang }: BlogPostParams) {
   try {
-    const filePath = path.join(process.cwd(), "posts", "blog", lang, category, `${slang}.mdx`);
+    const filePath = path.join(
+      process.cwd(),
+      "posts",
+      "blog",
+      lang,
+      category,
+      `${slang}.mdx`
+    );
 
     if (!fs.existsSync(filePath)) {
       console.warn(`File not found: ${filePath}`);
@@ -71,11 +133,19 @@ export async function getBlogPost({
     }
 
     const fileContents = fs.readFileSync(filePath, "utf8");
-
     const { content, data: metadata } = matter(fileContents);
 
+    const { content: compiledContent } = await compileMDX({
+      source: content,
+      options: {
+        mdxOptions: {
+          rehypePlugins: [rehypeShikiConfig(), rehypeSlug],
+        },
+      },
+    });
+
     return {
-      content,
+      content: compiledContent,
       metadata,
       slug: slang,
     };
@@ -83,5 +153,5 @@ export async function getBlogPost({
     console.error("Error reading post:", error);
     return null;
   }
-  
 }
+
