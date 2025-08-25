@@ -7,6 +7,10 @@ import { getBlogPost } from '@/lib/mdx/mdx-utils';
 import TableOfContents from '@/components/blog/tableOfContents';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft  } from '@fortawesome/free-solid-svg-icons';
+import CodeTest from "@/components/syntax-highlighter/code";
+import { MDXRemote } from "next-mdx-remote";
+
+
 
 export default async function Blog({ params }: {params: {lang:string, category: string, slang: string}}) {
 
@@ -63,7 +67,7 @@ export default async function Blog({ params }: {params: {lang:string, category: 
 
     
         <article className="prose dark:prose-invert mt-12">
-          {blogPost?.content} 
+          {blogPost?.content}
         </article>
           
       </div>

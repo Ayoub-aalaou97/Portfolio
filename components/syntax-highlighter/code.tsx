@@ -1,8 +1,10 @@
-import React from 'react'
-import { codeToHtml } from 'shiki'
-import { transformerNotationHighlight, transformerNotationDiff} from '@shikijs/transformers'
+import { codeToHtml } from "shiki";
+import {
+  transformerNotationHighlight,
+  transformerNotationDiff,
+} from "@shikijs/transformers";
 import type { BundledLanguage, BundledTheme } from "shiki";
-
+import CopyToClipboard from "./copyToClipboard";
 
 type Props = {
   code: string;
@@ -10,40 +12,48 @@ type Props = {
   theme?: BundledTheme;
   filename?: string;
 };
-
-
-    
-export default async function Code({code,  lang, theme, filename}: Props) {
-
-
-
+export default async function CodeBlock({
+  code,
+  lang = "javascript",
+  theme = "nord",
+  filename,
+}: Props) {
   const html = await codeToHtml(code, {
-    lang: 'javascript',
-    theme:"everforest-dark",
-    transformers: [
-      transformerNotationHighlight(),
-      transformerNotationDiff()
-    ],
-  })
+    lang,
+    theme,
+    transformers: [transformerNotationHighlight(), transformerNotationDiff()],
+  });
 
   return (
-    <div>
-      <div className="bg-neutral-800">
-        {filename && (
-          <div className="inline-flex bg-neutral-900 px-4 py-2 text-sm">
+    <div className="rounded-lg overflow-hidden">
+      <div className="overflow-hidden rounded-s-lg">
+        <div className="flex items-center justify-between bg-gradient-to-r from-neutral-100 to-neutral-200 py-2 pl-2 pr-4 text-sm">
+          <span className="-mb-[calc(0.5rem+2px)] rounded-t-lg border-2 border-black/5 border-b-neutral-300 bg-neutral-200 px-4 py-2 ">
             {filename}
-          </div>
-        )}
-      <div 
-        className="[&_.highlighted]:bg-white/10"
-        dangerouslySetInnerHTML={{ __html: html }} 
-      />
+          </span>
+          <CopyToClipboard code={code} />
+        </div>
+        <div
+          className="border-t-2 border-neutral-300 text-sm [&>pre]:overflow-x-auto [&>pre]:!bg-neutral-100 [&>pre]:py-3 [&>pre]:pl-4 [&>pre]:pr-5 [&>pre]:leading-snug [&_code]:block [&_code]:w-fit [&_code]:min-w-full"
+          dangerouslySetInnerHTML={{ __html: html }}
+        ></div>
       </div>
-
-
-      
     </div>
-  )
-
+  );
 }
 
+//@todo for Dark
+//  <div className="rounded-lg overflow-hidden">
+//       <div className="overflow-hidden rounded-s-lg">
+//         <div className="flex items-center justify-between bg-gradient-to-r from-neutral-900 to-neutral-800 py-2 pl-2 pr-4 text-sm">
+//           <span className="-mb-[calc(0.5rem+2px)] rounded-t-lg border-2 border-white/5 border-b-neutral-700 bg-neutral-800 px-4 py-2 ">
+//             {filename}
+//           </span>
+//           {/* <CopyToClipboard code={code} /> */}
+//         </div>
+//         <div
+//           className="border-t-2 border-neutral-700 text-sm [&>pre]:overflow-x-auto [&>pre]:!bg-neutral-900 [&>pre]:py-3 [&>pre]:pl-4 [&>pre]:pr-5 [&>pre]:leading-snug [&_code]:block [&_code]:w-fit [&_code]:min-w-full"
+//           dangerouslySetInnerHTML={{ __html: html }}
+//         ></div>
+//       </div>
+//     </div>

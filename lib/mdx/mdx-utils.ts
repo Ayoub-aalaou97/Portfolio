@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { rehypeShikiConfig } from "@/lib/shiki-utils"; 
 import rehypeSlug from 'rehype-slug';
+import CodeBlock from "@/components/syntax-highlighter/code";
 
 /**
  * Get all blog posts for a given language and optional category.
@@ -139,8 +140,11 @@ export async function getBlogPost({ lang, category, slang }: BlogPostParams) {
       source: content,
       options: {
         mdxOptions: {
-          rehypePlugins: [rehypeShikiConfig(), rehypeSlug],
+          rehypePlugins: [rehypeSlug],
         },
+      },
+      components: {
+        CodeBlock,
       },
     });
 

@@ -78,3 +78,122 @@ pre code .focus {
 
 
 /*end test*/
+
+/*start shiki style*/
+code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115,138,148,.4)
+}
+
+
+
+span.line.highlighted{
+  display: inline-block;
+  width: 100%;
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.shiki {
+  counter-reset: step;
+  counter-increment: step 0;
+
+  .line {
+    @apply border-l-4 border-transparent;
+
+    &::before {
+      counter-increment: step;
+      @apply mr-6 inline-block w-4 border-transparent text-right text-neutral-400 content-[counter(step)];
+    }
+
+    &.highlighted,
+    &.diff {
+      @apply -ml-4 -mr-5 inline-block w-[calc(100%+(theme(spacing.5)+theme(spacing.4)))] pl-4 pr-5;
+    }
+
+    &.highlighted {
+      @apply border-yellow-400 bg-yellow-100;
+    }
+
+    &.diff {
+      &.add,
+      &.remove {
+        span:first-child::before {
+          @apply -ml-4 inline-flex w-4;
+        }
+      }
+
+      &.add {
+        @apply border-green-500 bg-green-100 before:text-green-600;
+        span:first-child::before {
+          @apply text-green-600 content-["+"]; 
+        }
+      }
+
+      &.remove {
+        @apply border-red-500 bg-red-100 opacity-90 *:!text-red-600 before:text-red-600;
+        span:first-child::before {
+          @apply text-red-600 content-["-"];
+        }
+      }
+    }
+  }
+}
+
+
+/*@todo //dark 
+
+.shiki {
+  counter-reset: step;
+  counter-increment: step 0;
+  .line {
+    @apply border-l-4 border-transparent;
+    &::before {
+      counter-increment: step;
+      @apply mr-6 inline-block w-4 border-transparent text-right text-neutral-600 content-[counter(step)];
+    }
+    &.highlighted,
+    &.diff {
+      @apply -ml-4 -mr-5 inline-block w-[calc(100%+(theme(spacing.5)+theme(spacing.4)))] pl-4 pr-5;
+    }
+    &.highlighted {
+      @apply border-neutral-500 bg-neutral-800;
+    }
+    &.diff {
+      &.add,
+      &.remove {
+        span:first-child::before {
+          @apply -ml-4 inline-flex w-4;
+        }
+      }
+      &.add {
+        @apply border-blue-500 bg-blue-500/25 before:text-blue-500;
+        span:first-child::before {
+          @apply text-blue-500 content-["+"];
+        }
+      }
+      &.remove {
+        @apply border-orange-500 bg-orange-500/30 opacity-70 *:!text-neutral-400 before:text-orange-500;
+        span:first-child::before {
+          @apply text-orange-500 content-["-"];
+        }
+      }
+    }
+  }
+} */
+/*end line shiki style*/
